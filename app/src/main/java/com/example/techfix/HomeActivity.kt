@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.techfix.data.AppDatabase
 import com.example.techfix.data.DataSeeder
+import com.example.techfix.ui.CategoryAdapter
 import kotlinx.coroutines.launch
 
 class HomeActivity : AppCompatActivity() {
