@@ -41,7 +41,10 @@ class LoginActivity : AppCompatActivity() {
                 val result = userRepository.login(email, password)
                 result.onSuccess { user ->
                     Toast.makeText(this@LoginActivity, "Welcome, ${user.name}!", Toast.LENGTH_SHORT).show()
-                    // TODO: navigate to HomeActivity once it's built
+                    val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+                    intent.putExtra("USER_NAME", user.name)
+                    startActivity(intent)
+                    finish()
                 }.onFailure { error ->
                     Toast.makeText(this@LoginActivity, error.message, Toast.LENGTH_SHORT).show()
                 }

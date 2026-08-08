@@ -49,7 +49,10 @@ class RegisterActivity : AppCompatActivity() {
                 val result = userRepository.register(name, email, password, phone)
                 result.onSuccess { user ->
                     Toast.makeText(this@RegisterActivity, "Account created! Welcome, ${user.name}", Toast.LENGTH_SHORT).show()
-                    // TODO: navigate to HomeActivity once it's built (auto-login)
+                    val intent = Intent(this@RegisterActivity, HomeActivity::class.java)
+                    intent.putExtra("USER_NAME", user.name)
+                    startActivity(intent)
+                    finish()
                 }.onFailure { error ->
                     Toast.makeText(this@RegisterActivity, error.message, Toast.LENGTH_SHORT).show()
                 }
