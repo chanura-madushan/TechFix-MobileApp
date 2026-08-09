@@ -1,5 +1,6 @@
 package com.example.techfix
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +19,7 @@ class ServicesActivity : AppCompatActivity() {
 
         val categoryId = intent.getIntExtra("CATEGORY_ID", -1)
         val categoryName = intent.getStringExtra("CATEGORY_NAME") ?: "Services"
+        val userId = intent.getIntExtra("USER_ID", -1)
 
         findViewById<TextView>(R.id.tvCategoryTitle).text = categoryName
 
@@ -28,7 +30,12 @@ class ServicesActivity : AppCompatActivity() {
         lifecycleScope.launch {
             val services = db.repairServiceDao().getServicesByCategory(categoryId)
             recyclerView.adapter = ServiceAdapter(services) { service ->
-                // TODO: navigate to booking screen once it's built
+                val intent = Intent(this@ServicesActivity, BookingActivity::class.java)
+                intent.putExtra("SERVICE_ID", service.serviceId)
+                intent.putExtra("SERVICE_NAME", service.name)
+                intent.putExtra("SERVICE_PRICE", service.price)
+                intent.putExtra("CUSTOMER_ID", userId)
+                startActivity(intent)
             }
         }
     }

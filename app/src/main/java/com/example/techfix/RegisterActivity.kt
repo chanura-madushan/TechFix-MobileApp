@@ -51,6 +51,7 @@ class RegisterActivity : AppCompatActivity() {
                     Toast.makeText(this@RegisterActivity, "Account created! Welcome, ${user.name}", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this@RegisterActivity, HomeActivity::class.java)
                     intent.putExtra("USER_NAME", user.name)
+                    intent.putExtra("USER_ID", user.userId)
                     startActivity(intent)
                     finish()
                 }.onFailure { error ->

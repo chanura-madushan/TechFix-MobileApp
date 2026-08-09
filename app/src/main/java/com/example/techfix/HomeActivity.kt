@@ -23,6 +23,7 @@ class HomeActivity : AppCompatActivity() {
         db = AppDatabase.getDatabase(applicationContext)
 
         val userName = intent.getStringExtra("USER_NAME") ?: "User"
+        val userId = intent.getIntExtra("USER_ID", -1)
         findViewById<TextView>(R.id.tvWelcome).text = "Welcome, $userName!"
 
         val recyclerView = findViewById<RecyclerView>(R.id.rvCategories)
@@ -35,6 +36,7 @@ class HomeActivity : AppCompatActivity() {
                 val intent = Intent(this@HomeActivity, ServicesActivity::class.java)
                 intent.putExtra("CATEGORY_ID", category.categoryId)
                 intent.putExtra("CATEGORY_NAME", category.name)
+                intent.putExtra("USER_ID", userId)
                 startActivity(intent)
             }
         }
