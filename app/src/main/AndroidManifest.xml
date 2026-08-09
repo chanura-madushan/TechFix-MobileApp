@@ -46,6 +46,10 @@
             android:exported="false" />
 
 
+        <activity
+            android:name=".BookingActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
