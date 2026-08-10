@@ -74,9 +74,13 @@ class BookingActivity : AppCompatActivity() {
         statusView.text = "Getting your location..."
 
         val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        val cancellationTokenSource = com.google.android.gms.tasks.CancellationTokenSource()
 
         try {
-            fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+            fusedLocationClient.getCurrentLocation(
+                com.google.android.gms.location.Priority.PRIORITY_HIGH_ACCURACY,
+                cancellationTokenSource.token
+            ).addOnSuccessListener { location ->
                 if (location == null) {
                     statusView.text = "Couldn't get location. Make sure GPS is enabled and try again."
                     return@addOnSuccessListener
@@ -102,6 +106,8 @@ class BookingActivity : AppCompatActivity() {
                         findViewById<Button>(R.id.btnConfirmBooking).isEnabled = true
                     }
                 }
+            }.addOnFailureListener {
+                statusView.text = "Failed to get location: ${it.message}"
             }
         } catch (e: SecurityException) {
             statusView.text = "Location permission error. Please try again."
