@@ -19,16 +19,12 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
         db = AppDatabase.getDatabase(applicationContext)
-
         val userName = intent.getStringExtra("USER_NAME") ?: "User"
         val userId = intent.getIntExtra("USER_ID", -1)
         findViewById<TextView>(R.id.tvWelcome).text = "Welcome, $userName!"
-
         val recyclerView = findViewById<RecyclerView>(R.id.rvCategories)
         recyclerView.layoutManager = LinearLayoutManager(this)
-
         lifecycleScope.launch {
             DataSeeder.seedIfEmpty(db)
             val categories = db.deviceCategoryDao().getAllCategories()

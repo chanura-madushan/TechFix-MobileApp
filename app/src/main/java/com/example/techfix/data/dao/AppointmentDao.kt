@@ -29,4 +29,4 @@ interface AppointmentDao {
 
     @Query("UPDATE appointments SET imageUri = :uri WHERE appointmentId = :id")
     suspend fun updateImage(id: Int, uri: String)
-}.
+}

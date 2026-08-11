@@ -29,13 +29,11 @@ class RegisterActivity : AppCompatActivity() {
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val btnRegister = findViewById<Button>(R.id.btnRegister)
         val tvGoToLogin = findViewById<TextView>(R.id.tvGoToLogin)
-
         btnRegister.setOnClickListener {
             val name = etName.text.toString().trim()
             val email = etEmail.text.toString().trim()
             val phone = etPhone.text.toString().trim()
             val password = etPassword.text.toString()
-
             if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -44,7 +42,6 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.makeText(this, "Password must be at least 6 characters", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
             lifecycleScope.launch {
                 val result = userRepository.register(name, email, password, phone)
                 result.onSuccess { user ->
@@ -59,7 +56,6 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
         }
-
         tvGoToLogin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
