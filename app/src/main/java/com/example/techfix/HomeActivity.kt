@@ -2,6 +2,7 @@ package com.example.techfix
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -35,6 +36,20 @@ class HomeActivity : AppCompatActivity() {
                 intent.putExtra("USER_ID", userId)
                 startActivity(intent)
             }
+        }
+
+        findViewById<Button>(R.id.btnMyAppointments).setOnClickListener {
+            val intent = Intent(this, AppointmentsActivity::class.java)
+            intent.putExtra("USER_ID", userId)
+            intent.putExtra("FILTER_COMPLETED", false)
+            startActivity(intent)
+        }
+
+        findViewById<Button>(R.id.btnRepairHistory).setOnClickListener {
+            val intent = Intent(this, AppointmentsActivity::class.java)
+            intent.putExtra("USER_ID", userId)
+            intent.putExtra("FILTER_COMPLETED", true)
+            startActivity(intent)
         }
     }
 }

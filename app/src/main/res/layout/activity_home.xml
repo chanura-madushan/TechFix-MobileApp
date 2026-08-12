@@ -27,4 +27,18 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
+    <Button
+        android:id="@+id/btnMyAppointments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="My Appointments"
+        android:layout_marginTop="12dp" />
+
+    <Button
+        android:id="@+id/btnRepairHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Repair History"
+        android:layout_marginTop="8dp" />
+
 </LinearLayout>
