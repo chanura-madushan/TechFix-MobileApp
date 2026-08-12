@@ -51,5 +51,9 @@ class HomeActivity : AppCompatActivity() {
             intent.putExtra("FILTER_COMPLETED", true)
             startActivity(intent)
         }
+
+        findViewById<Button>(R.id.btnAdminPanel).setOnClickListener {
+            startActivity(Intent(this, AdminActivity::class.java))
+        }
     }
 }

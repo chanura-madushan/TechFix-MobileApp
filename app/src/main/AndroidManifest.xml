@@ -61,6 +61,13 @@
             android:name=".AppointmentDetailActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".AdminActivity"
+            android:exported="false" />
+
+
+
+
 
 
         <provider
