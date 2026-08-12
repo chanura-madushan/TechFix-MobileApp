@@ -50,6 +50,14 @@
             android:name=".BookingActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".AppointmentsActivity"
+            android:exported="false" />
+
+
+
+
+
     </application>
 
 </manifest>
