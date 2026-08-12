@@ -116,7 +116,7 @@ class AppointmentDetailActivity : AppCompatActivity() {
             "${packageName}.fileprovider",
             photoFile
         )
-        takePictureLauncher.launch(currentPhotoUri)
+        takePictureLauncher.launch(currentPhotoUri!!)
     }
 
     private fun processPayment() {
