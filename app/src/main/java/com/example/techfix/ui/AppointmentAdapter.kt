@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.techfix.R
 
 class AppointmentAdapter(
-    private val appointments: List<AppointmentDisplay>
+    private val appointments: List<AppointmentDisplay>,
+    private val onAppointmentClick: (AppointmentDisplay) -> Unit
 ) : RecyclerView.Adapter<AppointmentAdapter.AppointmentViewHolder>() {
 
     class AppointmentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -28,6 +29,7 @@ class AppointmentAdapter(
         holder.tvDate.text = "${appointment.serviceName} — ${appointment.date}"
         holder.tvBranch.text = appointment.branchName
         holder.tvStatus.text = appointment.status
+        holder.itemView.setOnClickListener { onAppointmentClick(appointment) }
     }
 
     override fun getItemCount(): Int = appointments.size

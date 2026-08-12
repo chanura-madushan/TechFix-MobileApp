@@ -1,5 +1,6 @@
 package com.example.techfix
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -56,7 +57,11 @@ class AppointmentsActivity : AppCompatActivity() {
                 )
             }
 
-            recyclerView.adapter = AppointmentAdapter(displayList)
+            recyclerView.adapter = AppointmentAdapter(displayList) { appointment ->
+                val detailIntent = Intent(this@AppointmentsActivity, AppointmentDetailActivity::class.java)
+                detailIntent.putExtra("APPOINTMENT_ID", appointment.appointmentId)
+                startActivity(detailIntent)
+            }
         }
     }
 }
