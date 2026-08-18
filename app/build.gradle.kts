@@ -46,4 +46,5 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     implementation(libs.androidx.recyclerview)
     implementation(libs.play.services.location)
+    implementation(libs.play.services.maps)
 }
