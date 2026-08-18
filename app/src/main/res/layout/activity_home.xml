@@ -21,6 +21,22 @@
         android:textSize="16sp"
         android:layout_marginBottom="12dp" />
 
+    <Button
+        android:id="@+id/btnGetLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get My GPS Location"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="GPS Location: Not available"
+        android:textSize="14sp"
+        android:padding="8dp"
+        android:layout_marginBottom="8dp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCategories"
         android:layout_width="match_parent"
@@ -40,7 +56,6 @@
         android:layout_height="wrap_content"
         android:text="Repair History"
         android:layout_marginTop="8dp" />
-
 
     <Button
         android:id="@+id/btnAdminPanel"
