@@ -1,12 +1,15 @@
 package com.example.techfix;
 
 import android.os.Bundle;
-
+import android.util.Log;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.techfix.data.BranchRepository;
+import com.example.techfix.model.Branch;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,5 +23,26 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // --- TEMPORARY TEST CODE: proves Firestore is working end-to-end ---
+        BranchRepository branchRepository = new BranchRepository();
+
+        Branch testBranch = new Branch("Colombo Branch", "123 Galle Road, Colombo", 6.9271, 79.8612);
+        branchRepository.insertBranch(testBranch);
+
+        branchRepository.getAllBranches(new com.example.techfix.data.FirestoreCallback<Branch>() {
+            @Override
+            public void onSuccess(java.util.List<Branch> result) {
+                for (Branch b : result) {
+                    Log.d("TechFixTest", "Branch: " + b.name + " (" + b.branchId + ")");
+                }
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                Log.e("TechFixTest", "Firestore error: " + e.getMessage());
+            }
+        });
+        // --- END TEMPORARY TEST CODE ---
     }
 }
