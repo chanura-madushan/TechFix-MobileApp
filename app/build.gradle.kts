@@ -44,5 +44,6 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     implementation(platform("com.google.firebase:firebase-bom:34.17.0"))
     implementation("com.google.firebase:firebase-firestore")
-
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.play.services.location)
 }
