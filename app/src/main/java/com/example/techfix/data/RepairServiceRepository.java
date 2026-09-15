@@ -43,4 +43,16 @@ public class RepairServiceRepository {
             }
         }).addOnFailureListener(callback::onFailure);
     }
+
+    public void getAllServices(FirestoreCallback<RepairService> callback) {
+        servicesRef.get().addOnSuccessListener(querySnapshot -> {
+            List<RepairService> services = new ArrayList<>();
+            for (QueryDocumentSnapshot doc : querySnapshot) {
+                RepairService service = doc.toObject(RepairService.class);
+                service.serviceId = doc.getId();
+                services.add(service);
+            }
+            callback.onSuccess(services);
+        }).addOnFailureListener(callback::onFailure);
+    }
 }
