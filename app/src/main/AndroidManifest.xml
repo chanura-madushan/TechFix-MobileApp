@@ -23,19 +23,17 @@
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".RegisterActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
-
-        <activity
-            android:name=".HomeActivity"
-            android:exported="false" />
+        <activity android:name=".RegisterActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".HomeActivity" android:exported="false" />
+        <activity android:name=".ServicesActivity" android:exported="false" />
+        <activity android:name=".BookingActivity" android:exported="false" />
+        <activity android:name=".AppointmentsActivity" android:exported="false" />
+        <activity android:name=".AppointmentDetailActivity" android:exported="false" />
+        <activity android:name=".AdminActivity" android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

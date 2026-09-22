@@ -50,6 +50,16 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         holder.tvDate.setText(appointment.serviceName + " — " + appointment.date);
         holder.tvBranch.setText(appointment.branchName);
         holder.tvStatus.setText(appointment.status);
+        switch (appointment.status) {
+            case "In Progress":
+                holder.tvStatus.setBackgroundResource(com.example.techfix.R.drawable.bg_status_progress);
+                break;
+            case "Completed":
+                holder.tvStatus.setBackgroundResource(com.example.techfix.R.drawable.bg_status_completed);
+                break;
+            default:
+                holder.tvStatus.setBackgroundResource(com.example.techfix.R.drawable.bg_status_pending);
+        }
         holder.itemView.setOnClickListener(v -> listener.onAppointmentClick(appointment));
     }
 

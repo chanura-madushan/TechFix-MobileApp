@@ -3,8 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@drawable/bg_card"
     android:padding="16dp"
-    android:background="?attr/selectableItemBackground">
+    android:layout_marginBottom="10dp"
+    android:clickable="true"
+    android:focusable="true">
 
     <TextView
         android:id="@+id/tvAppointmentDate"
@@ -12,7 +15,8 @@
         android:layout_height="wrap_content"
         android:text="Date"
         android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/text_primary" />
 
     <TextView
         android:id="@+id/tvAppointmentBranch"
@@ -20,6 +24,7 @@
         android:layout_height="wrap_content"
         android:text="Branch"
         android:textSize="14sp"
+        android:textColor="@color/text_secondary"
         android:layout_marginTop="2dp" />
 
     <TextView
@@ -27,10 +32,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Status"
-        android:textSize="14sp"
+        android:textSize="13sp"
         android:textStyle="bold"
-        android:textColor="#1976D2"
-        android:layout_marginTop="6dp"
-        android:padding="4dp" />
+        android:textColor="@color/white"
+        android:background="@drawable/bg_status_pending"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:layout_marginTop="8dp" />
 
 </LinearLayout>

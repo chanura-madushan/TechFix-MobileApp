@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/background"
     android:padding="16dp">
 
     <TextView
@@ -12,6 +13,7 @@
         android:text="Services"
         android:textSize="22sp"
         android:textStyle="bold"
+        android:textColor="@color/primary_dark"
         android:layout_marginBottom="12dp" />
 
     <androidx.recyclerview.widget.RecyclerView

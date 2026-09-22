@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/background"
     android:padding="16dp">
 
     <TextView
@@ -11,6 +12,7 @@
         android:text="Admin — All Appointments"
         android:textSize="22sp"
         android:textStyle="bold"
+        android:textColor="@color/primary_dark"
         android:layout_marginBottom="12dp" />
 
     <TextView
@@ -19,6 +21,7 @@
         android:layout_height="wrap_content"
         android:text="No appointments in the system yet."
         android:textSize="16sp"
+        android:textColor="@color/text_secondary"
         android:visibility="gone"
         android:layout_marginTop="24dp"
         android:gravity="center" />

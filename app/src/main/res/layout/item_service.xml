@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@drawable/bg_card"
     android:padding="16dp"
-    android:background="?attr/selectableItemBackground"
+    android:layout_marginBottom="10dp"
     android:clickable="true"
     android:focusable="true">
 
@@ -14,7 +15,8 @@
         android:layout_height="wrap_content"
         android:text="Service Name"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/text_primary" />
 
     <TextView
         android:id="@+id/tvServiceDescription"
@@ -22,6 +24,7 @@
         android:layout_height="wrap_content"
         android:text="Description"
         android:textSize="14sp"
+        android:textColor="@color/text_secondary"
         android:layout_marginTop="4dp" />
 
     <TextView
@@ -31,7 +34,7 @@
         android:text="Rs. 0.00"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:textColor="#1976D2"
-        android:layout_marginTop="4dp" />
+        android:textColor="@color/accent"
+        android:layout_marginTop="6dp" />
 
 </LinearLayout>
