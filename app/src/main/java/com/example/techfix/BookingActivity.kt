@@ -15,6 +15,7 @@ import com.example.techfix.data.AppDatabase
 import com.example.techfix.data.entity.Appointment
 import com.example.techfix.data.entity.Branch
 import com.example.techfix.util.LocationUtils
+import com.example.techfix.BranchDistance
 import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.launch
 
@@ -94,7 +95,7 @@ class BookingActivity : AppCompatActivity() {
                     }
 
                     val closest = branches.minByOrNull {
-                        LocationUtils.distanceKm(location.latitude, location.longitude, it.latitude, it.longitude)
+                        BranchDistance.km(location.latitude, location.longitude, it.latitude, it.longitude)
                     }
 
                     nearestBranch = closest
