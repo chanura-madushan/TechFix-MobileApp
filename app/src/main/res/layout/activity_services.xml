@@ -18,8 +18,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvServices"
+        android:layoutAnimation="@anim/layout_animation_fall_down"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
 
 </LinearLayout>

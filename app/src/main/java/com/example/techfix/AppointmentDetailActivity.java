@@ -28,7 +28,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Locale;
 
-public class AppointmentDetailActivity extends AppCompatActivity {
+public class AppointmentDetailActivity extends BaseActivity {
 
     private AppointmentRepository appointmentRepository;
     private PaymentRepository paymentRepository;

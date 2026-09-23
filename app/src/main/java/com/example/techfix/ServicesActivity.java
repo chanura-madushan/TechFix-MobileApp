@@ -14,7 +14,7 @@ import com.example.techfix.ui.ServiceAdapter;
 
 import java.util.List;
 
-public class ServicesActivity extends AppCompatActivity {
+public class ServicesActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -26,7 +26,7 @@ import com.google.android.gms.tasks.CancellationTokenSource;
 import java.util.List;
 import java.util.Locale;
 
-public class BookingActivity extends AppCompatActivity {
+public class BookingActivity extends BaseActivity {
 
     private String serviceId, customerId;
     private double servicePrice;

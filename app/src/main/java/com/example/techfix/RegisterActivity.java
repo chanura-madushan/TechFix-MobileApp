@@ -12,7 +12,7 @@ import com.example.techfix.data.FirestoreSingleCallback;
 import com.example.techfix.data.UserRepository;
 import com.example.techfix.model.User;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends BaseActivity {
 
     private UserRepository userRepository;
 

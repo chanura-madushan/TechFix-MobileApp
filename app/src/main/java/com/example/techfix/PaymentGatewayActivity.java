@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class PaymentGatewayActivity extends AppCompatActivity {
+public class PaymentGatewayActivity extends BaseActivity {
 
     private String appointmentId;
     private double amount;

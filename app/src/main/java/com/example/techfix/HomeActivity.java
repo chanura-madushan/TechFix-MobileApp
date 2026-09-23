@@ -5,22 +5,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.techfix.data.AppointmentRepository;
 import com.example.techfix.data.DataSeeder;
 import com.example.techfix.data.DeviceCategoryRepository;
 import com.example.techfix.data.FirestoreCallback;
 import com.example.techfix.data.FirestoreSingleCallback;
 import com.example.techfix.data.UserRepository;
+import com.example.techfix.model.Appointment;
 import com.example.techfix.model.DeviceCategory;
 import com.example.techfix.model.User;
 import com.example.techfix.ui.CategoryAdapter;
 
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
 
     private String userId;
 
@@ -33,8 +34,7 @@ public class HomeActivity extends AppCompatActivity {
         if (userName == null) userName = "User";
         userId = getIntent().getStringExtra("USER_ID");
 
-        TextView tvWelcome = findViewById(R.id.tvWelcome);
-        tvWelcome.setText("Welcome, " + userName + "!");
+        ((TextView) findViewById(R.id.tvWelcome)).setText("Welcome, " + userName + "!");
 
         RecyclerView recyclerView = findViewById(R.id.rvCategories);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -52,11 +52,14 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra("USER_ID", userId);
                     startActivity(intent);
                 }));
+                recyclerView.scheduleLayoutAnimation();
             }
 
             @Override
             public void onFailure(Exception e) {}
         });
+
+        loadDashboardStats();
 
         findViewById(R.id.btnMyAppointments).setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, AppointmentsActivity.class);
@@ -73,7 +76,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         Button btnAdminPanel = findViewById(R.id.btnAdminPanel);
-        btnAdminPanel.setVisibility(View.GONE); // hidden until role is confirmed
+        btnAdminPanel.setVisibility(View.GONE);
 
         btnAdminPanel.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, AdminActivity.class);
@@ -82,6 +85,28 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         checkAdminRole(btnAdminPanel);
+    }
+
+    private void loadDashboardStats() {
+        if (userId == null) return;
+
+        AppointmentRepository appointmentRepository = new AppointmentRepository();
+        appointmentRepository.getAppointmentsByCustomer(userId, new FirestoreCallback<Appointment>() {
+            @Override
+            public void onSuccess(List<Appointment> appointments) {
+                int activeCount = 0;
+                int completedCount = 0;
+                for (Appointment a : appointments) {
+                    if ("Completed".equals(a.status)) completedCount++;
+                    else activeCount++;
+                }
+                ((TextView) findViewById(R.id.tvActiveCount)).setText(String.valueOf(activeCount));
+                ((TextView) findViewById(R.id.tvCompletedCount)).setText(String.valueOf(completedCount));
+            }
+
+            @Override
+            public void onFailure(Exception e) {}
+        });
     }
 
     private void checkAdminRole(Button btnAdminPanel) {
@@ -97,9 +122,7 @@ public class HomeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Exception e) {
-                // If the role check fails, the button stays hidden — safe default.
-            }
+            public void onFailure(Exception e) {}
         });
     }
 }
