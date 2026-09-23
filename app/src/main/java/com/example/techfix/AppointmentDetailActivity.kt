@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.techfix.data.AppDatabase
+import com.example.techfix.RepairCalculator
 import com.example.techfix.data.entity.Payment
 import kotlinx.coroutines.launch
 import java.io.File
