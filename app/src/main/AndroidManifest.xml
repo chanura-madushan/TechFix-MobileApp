@@ -17,6 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TechFix">
 
+
+        <activity android:name=".PaymentGatewayActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
+
+
         <activity
             android:name=".LoginActivity"
             android:exported="true"

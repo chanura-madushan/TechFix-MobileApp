@@ -1,6 +1,7 @@
 package com.example.techfix;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,8 +26,6 @@ import com.example.techfix.model.RepairService;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 public class AppointmentDetailActivity extends AppCompatActivity {
@@ -52,6 +51,13 @@ public class AppointmentDetailActivity extends AppCompatActivity {
                 }
             });
 
+    private final androidx.activity.result.ActivityResultLauncher<Intent> paymentGatewayLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    updatePaymentSection();
+                }
+            });
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +70,12 @@ public class AppointmentDetailActivity extends AppCompatActivity {
         loadAppointmentDetails();
 
         findViewById(R.id.btnTakePhoto).setOnClickListener(v -> checkCameraPermissionAndLaunch());
-        findViewById(R.id.btnPayNow).setOnClickListener(v -> processPayment());
+        findViewById(R.id.btnPayNow).setOnClickListener(v -> {
+            Intent intent = new Intent(AppointmentDetailActivity.this, PaymentGatewayActivity.class);
+            intent.putExtra("APPOINTMENT_ID", appointmentId);
+            intent.putExtra("AMOUNT", servicePrice);
+            paymentGatewayLauncher.launch(intent);
+        });
     }
 
     private void loadAppointmentDetails() {
@@ -165,26 +176,5 @@ public class AppointmentDetailActivity extends AppCompatActivity {
         } catch (IOException e) {
             Toast.makeText(this, "Couldn't create photo file: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private void processPayment() {
-        paymentRepository.getPaymentByAppointment(appointmentId, new FirestoreSingleCallback<Payment>() {
-            @Override
-            public void onSuccess(Payment existing) {
-                String today = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-                paymentRepository.markAsPaid(existing.paymentId, "Paid", today);
-                Toast.makeText(AppointmentDetailActivity.this, "Payment successful!", Toast.LENGTH_SHORT).show();
-                updatePaymentSection();
-            }
-
-            @Override
-            public void onFailure(Exception e) {
-                String today = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-                Payment payment = new Payment(appointmentId, servicePrice, "Paid", today, "Cash");
-                paymentRepository.insertPayment(payment);
-                Toast.makeText(AppointmentDetailActivity.this, "Payment successful!", Toast.LENGTH_SHORT).show();
-                updatePaymentSection();
-            }
-        });
     }
 }
