@@ -382,11 +382,6 @@ screenshots/
 └── admin.png
 ```
 
-You can later display them in the README using:
-
-```markdown
-![Login Screen](screenshots/login.png)
-```
 
 ---
 
@@ -406,10 +401,9 @@ Developed as a **university group project**.
 
 | Member         | Role        |
 | -------------- | ----------- |
-| 👨‍💻 Member 1 | Development |
-| 👨‍💻 Member 2 | Development |
-| 👨‍💻 Member 3 | Development |
-| 👨‍💻 Member 4 | Development |
+| 👨‍💻 Madushan | Development |
+| 👨‍💻 Oshan    | Development |
+| 👨‍💻 Tharindu | Development |
 
 > Replace the member names and roles above with your actual team information.
 
